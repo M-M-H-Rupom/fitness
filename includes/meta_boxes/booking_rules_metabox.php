@@ -27,7 +27,11 @@ class bookingMetabox {
         $bkng_start_time = get_post_meta( $post->ID, 'bkng_start_time', true );
         $bkng_end_time = get_post_meta( $post->ID, 'bkng_end_time', true );
         $bkng_cancellation = get_post_meta( $post->ID, 'bkng_cancellation', true );
-
+        $package_options = get_post_meta( $post->ID, 'package_options', true );
+        $pack_count = get_post_meta( $post->ID, 'pack_count', true);
+        // echo '<pre>';
+        // var_dump($package_options);
+        // echo '</pre>';
         ?> 
         <div class="booking_metabox_container">
             <div class="bkng_room">
@@ -78,31 +82,36 @@ class bookingMetabox {
                 <span> Add Package Price</span>
             </div>
             <div class="gmf_package_container">
-                <div class="gmf_package">
-                    <div class="package_select">
-                        <select name="package_category" id="">
-                        <?php
-                        $parent_args = [
-                            'taxonomy'     => 'package',
-                            'parent'        => 0,
-                            'hide_empty'    => false
-                        ];
-                        $package_terms = get_terms( $parent_args );
-                        foreach($package_terms as $a_package_term){
-                            ?>
-                            <option value=""> <?php echo $a_package_term->name ?> </option>
-                            <?php
-                        }
-                        ?>
-                        </select>
-                    </div>
-                    <div class="package_discount_field">
-                        <input type="number" name="balance_discount" id="" class="balance_discount">
-                    </div>
-                    <div class="package_close_img">
-                        <img src="https://placehold.co/30x30" alt="">
-                    </div>
-                </div>
+                <input type="hidden" name="pack_count" id="pack_count" value="<?php echo $pack_count?>">
+                    <?php 
+                    foreach($package_options as $option_key => $a_package_options){?>
+                        <div class="gmf_package">
+                            <div class="package_select">
+                                <select name="package_options[<?php echo $option_key ?>][package]" id="">
+                                <?php
+                                $parent_args = [
+                                    'taxonomy'     => 'package',
+                                    'parent'        => 0,
+                                    'hide_empty'    => false
+                                ];
+                                $package_terms = get_terms( $parent_args );
+                                foreach($package_terms as $a_package_term){
+                                    $selected = ($a_package_term->slug == $a_package_options['package']) ? 'selected' : '';
+                                    ?>
+                                    <option value="<?php echo $a_package_term->slug ?>" <?php echo $selected ?>> <?php echo $a_package_term->name ?> </option>
+                                    <?php
+                                }
+                                ?>
+                                </select>
+                            </div>
+                            <div class="package_discount_field">
+                                <input type="number" name="package_options[<?php echo $option_key ?>][price]" id="" class="balance_discount" value="<?php echo $a_package_options['price'] ?>">
+                            </div>
+                            <div class="package_close_img">
+                                <img src="<?php echo GMF_URL . '/assets/images/close_btn.png' ?>" alt="">
+                            </div>
+                        </div>
+                        <?php } ?>
             </div>
             <div class="add_more_package">
                 <span class="more_package">Add more </span>
@@ -130,6 +139,12 @@ class bookingMetabox {
         }
         if ( isset($_POST['bkng_cancellation']) ) {   // update cancellation field
             update_post_meta($post_id, 'bkng_cancellation', $_POST['bkng_cancellation']);
+        }
+        if ( isset($_POST['package_options']) ) {   // update package options
+            update_post_meta($post_id, 'package_options', $_POST['package_options']);
+        }
+        if ( isset($_POST['pack_count']) ) {   // update package options
+            update_post_meta($post_id, 'pack_count', $_POST['pack_count']);
         }
     }
 }

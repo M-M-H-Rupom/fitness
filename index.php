@@ -24,6 +24,15 @@ class Gmf{
         wp_localize_script( 'gmf-js', 'localize_data', array(
             'url' => admin_url('admin-ajax.php'),
         ) );
+        $parent_args = [
+            'taxonomy'     => 'package',
+            'parent'        => 0,
+            'hide_empty'    => false
+        ];
+        $package_terms = get_terms( $parent_args );
+        wp_localize_script('gmf-js', 'terms_data', array(
+            $package_terms
+        ) );
     }
     public function wp_enqueue_callback(){
         wp_enqueue_style( 'gmf-css', GMF_URL . 'assets/css/style.css' );

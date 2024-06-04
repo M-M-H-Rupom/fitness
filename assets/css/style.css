@@ -67,6 +67,11 @@
     width: 15%;
     text-align: end;
 }
+.package_close_img img{
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+}
 .add_more_package{
     text-align: end;
     margin: 24px 0;
