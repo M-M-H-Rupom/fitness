@@ -1,4 +1,5 @@
 <?php
+
 class bookingMetabox {
     public function __construct() {
         add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
@@ -31,7 +32,7 @@ class bookingMetabox {
         <div class="booking_metabox_container">
             <div class="bkng_room">
                 <label for="">
-                    <span>Room</span>
+                    <span>Room : </span>
                     <select name="bkng_room" id="bkng_room">
                         <option value="1" <?php echo ($bkng_room == '1') ? 'selected' : ''; ?>> 1 </option>
                         <option value="2" <?php echo ($bkng_room == '2') ? 'selected' : ''; ?>> 2 </option>
@@ -40,7 +41,7 @@ class bookingMetabox {
             </div>
             <div class="bkng_days">
                 <label for="">
-                    <span>Days</span>
+                    <span>Days :</span>
                     <select name="bkng_days" id="bkng_days">
                         <option value="Saturday"> Saturday </option>
                         <option value="Sunday"> Sunday </option>
@@ -54,24 +55,57 @@ class bookingMetabox {
             </div>
             <div class="bkng_start_time">
                 <label for="">
-                    <span>Start Time</span>
+                    <span>Start Time :</span>
                     <input type="text" name="bkng_start_time" id="bkng_start_time" value="<?php echo $bkng_start_time ?>">
                 </label>
             </div>
             <div class="bkng_end_time">
                 <label for="">
-                    <span>End Time</span>
+                    <span>End Time :</span>
                     <input type="text" name="bkng_end_time" id="bkng_end_time" value="<?php echo $bkng_end_time ?>">
                 </label>
             </div>
             <div class="bkng_cancellation">
                 <label for="">
-                    <span>Cancellation</span>
+                    <span>Cancellation :</span>
                     <select name="bkng_cancellation" id="bkng_cancellation">
                         <option value="24h"> 24h</option>
                         <option value="48h"> 48h</option>
                     </select>
                 </label>
+            </div>
+            <div class="meta_package_price_title">
+                <span> Add Package Price</span>
+            </div>
+            <div class="gmf_package_container">
+                <div class="gmf_package">
+                    <div class="package_select">
+                        <select name="package_category" id="">
+                        <?php
+                        $parent_args = [
+                            'taxonomy'     => 'package',
+                            'parent'        => 0,
+                            'hide_empty'    => false
+                        ];
+                        $package_terms = get_terms( $parent_args );
+                        foreach($package_terms as $a_package_term){
+                            ?>
+                            <option value=""> <?php echo $a_package_term->name ?> </option>
+                            <?php
+                        }
+                        ?>
+                        </select>
+                    </div>
+                    <div class="package_discount_field">
+                        <input type="number" name="balance_discount" id="" class="balance_discount">
+                    </div>
+                    <div class="package_close_img">
+                        <img src="https://placehold.co/30x30" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="add_more_package">
+                <span class="more_package">Add more </span>
             </div> 
         </div>
         <?php 

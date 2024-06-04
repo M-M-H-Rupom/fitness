@@ -1,0 +1,129 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+/* meta box css */
+.booking_metabox_container{
+    padding: 0 16px;
+}
+.bkng_room label,
+.bkng_days label,
+.bkng_cancellation label,
+.bkng_start_time label,
+.bkng_end_time label{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* justify-content: space-around; */
+    /* gap: 32px; */
+    margin: 24px 0;
+}
+.bkng_room span,
+.bkng_days span,
+.bkng_cancellation span,
+.bkng_start_time span,
+.bkng_end_time span{
+    width: 20%;
+    font-size: 16px;
+}
+.bkng_room select,
+.bkng_days select,
+.bkng_cancellation select,
+.bkng_start_time input,
+.bkng_end_time input{
+    width: 60%;
+    padding: 4px;
+}
+/* add package price */
+.meta_package_price_title{
+    font-size: 18px;
+    font-weight: 400;
+    padding: 12px 0 0 0;
+}
+.gmf_package{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 1px solid rgb(238, 194, 156);
+    padding: 16px 0;
+    /* justify-content: space-evenly; */
+}
+.package_select{
+    width: 35%;
+}
+.package_select select{
+    width: 100%;
+    padding: 4px;
+}
+.package_discount_field{
+    width: 45%;
+}
+.package_discount_field input{
+    width: 100%;
+    padding: 4px;
+}
+.package_close_img{
+    width: 15%;
+    text-align: end;
+}
+.add_more_package{
+    text-align: end;
+    margin: 24px 0;
+    cursor: pointer;
+}
+.add_more_package span{
+    border: 1px solid rgb(146, 146, 146);
+    padding: 6px 12px;
+    background-color: white;
+    border-radius: 4px;
+}
+/* end metabox css */
+
+/* customer table  admin menu page*/
+.discount_container,
+.gmf_user_container{
+    padding: 32px;
+}
+.gmf_user_content,
+.gmf_user_heading{
+    display: flex;
+    /* align-items: center; */
+    margin: auto;
+    justify-content: flex-start;
+    border: 1px solid rgb(168, 167, 167);
+    text-align: center;
+    
+}
+.gmf_user_content{
+    border-top: none;
+}
+.gmf_user_content .item,
+.gmf_user_heading .item{
+    width: 20%;
+    padding: 16px 0;
+    border-right: 1px solid rgb(168, 167, 167);
+}
+.gmf_update_balance,
+.user_balance_field{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 40%;
+}
+.user_balance_field input{
+    width: 50%;
+}
+.update_balanced{
+    padding: 4px;
+    border: 1px solid rgb(126, 124, 124);
+    border-radius: 4px;
+    outline: none;
+}
+.add_discount_title{
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 8px;
+}

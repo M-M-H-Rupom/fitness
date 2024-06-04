@@ -32,6 +32,7 @@ function gmf_register_booking_rules() {
 		"query_var" => true,
 		"supports" => [ "title", "page-attributes" ],
 		"show_in_graphql" => false,
+		'menu_position' => 13
 	];
 
 	register_post_type( "booking_rules", $args );
