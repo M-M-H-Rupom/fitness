@@ -86,34 +86,36 @@ class bookingMetabox {
             <div class="gmf_package_container">
                 <input type="hidden" name="pack_count" id="pack_count" value="<?php echo $pack_count?>">
                     <?php 
-                    foreach($package_options as $option_key => $a_package_options){?>
-                        <div class="gmf_package">
-                            <div class="package_select">
-                                <select name="package_options[<?php echo $option_key ?>][package]" id="">
-                                <?php
-                                $parent_args = [
-                                    'taxonomy'     => 'package',
-                                    'parent'        => 0,
-                                    'hide_empty'    => false
-                                ];
-                                $package_terms = get_terms( $parent_args );
-                                foreach($package_terms as $a_package_term){
-                                    $selected = ($a_package_term->slug == $a_package_options['package']) ? 'selected' : '';
-                                    ?>
-                                    <option value="<?php echo $a_package_term->slug ?>" <?php echo $selected ?>> <?php echo $a_package_term->name ?> </option>
+                    if($package_options){
+                        foreach($package_options as $option_key => $a_package_options){?>
+                            <div class="gmf_package">
+                                <div class="package_select">
+                                    <select name="package_options[<?php echo $option_key ?>][package]" id="">
                                     <?php
-                                }
-                                ?>
-                                </select>
+                                    $parent_args = [
+                                        'taxonomy'     => 'package',
+                                        'parent'        => 0,
+                                        'hide_empty'    => false
+                                    ];
+                                    $package_terms = get_terms( $parent_args );
+                                    foreach($package_terms as $a_package_term){
+                                        $selected = ($a_package_term->slug == $a_package_options['package']) ? 'selected' : '';
+                                        ?>
+                                        <option value="<?php echo $a_package_term->slug ?>" <?php echo $selected ?>> <?php echo $a_package_term->name ?> </option>
+                                        <?php
+                                    }
+                                    ?>
+                                    </select>
+                                </div>
+                                <div class="package_discount_field">
+                                    <input type="number" name="package_options[<?php echo $option_key ?>][price]" id="" class="balance_discount" value="<?php echo $a_package_options['price'] ?>">
+                                </div>
+                                <div class="package_close_img">
+                                    <img src="<?php echo GMF_URL . 'assets/images/close_btn.png' ?>" alt="">
+                                </div>
                             </div>
-                            <div class="package_discount_field">
-                                <input type="number" name="package_options[<?php echo $option_key ?>][price]" id="" class="balance_discount" value="<?php echo $a_package_options['price'] ?>">
-                            </div>
-                            <div class="package_close_img">
-                                <img src="<?php echo GMF_URL . 'assets/images/close_btn.png' ?>" alt="">
-                            </div>
-                        </div>
-                        <?php } ?>
+                        <?php } 
+                    }?>
             </div>
             <div class="add_more_package">
                 <span class="more_package">Add more </span>

@@ -93,6 +93,10 @@ select#bkng_days{
     margin: 24px 0;
     cursor: pointer;
 }
+.customer_table_pack{
+    margin-top:0 ;
+    margin-right: 12px;
+}
 .add_more_package span{
     border: 1px solid rgb(146, 146, 146);
     padding: 6px 12px;

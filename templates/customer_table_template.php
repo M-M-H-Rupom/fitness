@@ -63,8 +63,8 @@ $current_user = wp_get_current_user();
                 <img src="<?php echo GMF_URL . 'assets/images/close_btn.png' ?>" alt="">
             </div>
         </div>
-        <div class="add_more_package" >
-            <span class="more_package">Add more </span>
-        </div>
+    </div>
+    <div class="add_more_package customer_table_pack" >
+        <span class="more_package">Add more </span>
     </div>
 </div>
