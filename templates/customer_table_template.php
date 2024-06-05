@@ -31,46 +31,40 @@ $current_user = wp_get_current_user();
             <button class="update_balanced"> Update Balance</button>
         </div>
    </div>
-</div>
-<div class="discount_container">
-    <div class="add_discount_title">
-        <span>Add discount</span>
-    </div>
-    <div class="discount_package">
-        <span>Packages :</span>
-    </div>
-    <div class="gmf_package">
-        <div class="package_select">
-            <select name="package_category" id="">
-            <?php
-            $parent_args = [
-                'taxonomy'     => 'package',
-                'parent'        => 0,
-                'hide_empty'    => false
-            ];
-            $package_terms = get_terms( $parent_args );
-            foreach($package_terms as $a_package_term){
-                ?>
-                <option value=""> <?php echo $a_package_term->name ?> </option>
+   <div class="discount_container">
+        <div class="add_discount_title">
+            <span>Add discount</span>
+        </div>
+        <div class="discount_package">
+            <span>Packages :</span>
+        </div>
+        <div class="gmf_package">
+            <div class="package_select">
+                <select name="package_category" id="">
                 <?php
-            }
-            ?>
-            </select>
+                $parent_args = [
+                    'taxonomy'     => 'package',
+                    'parent'        => 0,
+                    'hide_empty'    => false
+                ];
+                $package_terms = get_terms( $parent_args );
+                foreach($package_terms as $a_package_term){
+                    ?>
+                    <option value=""> <?php echo $a_package_term->name ?> </option>
+                    <?php
+                }
+                ?>
+                </select>
+            </div>
+            <div class="package_discount_field">
+                <input type="number" name="balance_discount" id="" class="balance_discount">
+            </div>
+            <div class="package_close_img">
+                <img src="<?php echo GMF_URL . 'assets/images/close_btn.png' ?>" alt="">
+            </div>
         </div>
-        <div class="package_discount_field">
-            <input type="number" name="balance_discount" id="" class="balance_discount">
-        </div>
-        <div class="package_close_img">
-            <img src="https://placehold.co/30x30" alt="">
+        <div class="add_more_package" >
+            <span class="more_package">Add more </span>
         </div>
     </div>
-    <div class="add_more_package">
-        <span class="more_package">Add more </span>
-    </div>
-    
 </div>
-<!-- <td class='display_discount'><?php echo get_post_meta( $current_user->ID, 'discount_balance', true) ?> </td>
-<td class='discount_field'> 
-    <input type="number" name="balance_discount" class="balance_discount">
-    <button class="update_discount"> Update Discount</button>
-</td> -->

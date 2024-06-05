@@ -29,6 +29,7 @@ class bookingMetabox {
         $bkng_cancellation = get_post_meta( $post->ID, 'bkng_cancellation', true );
         $package_options = get_post_meta( $post->ID, 'package_options', true );
         $pack_count = get_post_meta( $post->ID, 'pack_count', true);
+        $selected_days = get_post_meta( $post->ID, 'selected_days', true );
         // echo '<pre>';
         // var_dump($package_options);
         // echo '</pre>';
@@ -46,7 +47,8 @@ class bookingMetabox {
             <div class="bkng_days">
                 <label for="">
                     <span>Days :</span>
-                    <select name="bkng_days" id="bkng_days">
+                    <input type="hidden" value="<?php echo $selected_days ?>" name="selected_days" id="selected_days">
+                    <select name="bkng_days" id="bkng_days" multiple>
                         <option value="Saturday"> Saturday </option>
                         <option value="Sunday"> Sunday </option>
                         <option value="Monday"> Monday </option>
@@ -108,7 +110,7 @@ class bookingMetabox {
                                 <input type="number" name="package_options[<?php echo $option_key ?>][price]" id="" class="balance_discount" value="<?php echo $a_package_options['price'] ?>">
                             </div>
                             <div class="package_close_img">
-                                <img src="<?php echo GMF_URL . '/assets/images/close_btn.png' ?>" alt="">
+                                <img src="<?php echo GMF_URL . 'assets/images/close_btn.png' ?>" alt="">
                             </div>
                         </div>
                         <?php } ?>
@@ -143,8 +145,11 @@ class bookingMetabox {
         if ( isset($_POST['package_options']) ) {   // update package options
             update_post_meta($post_id, 'package_options', $_POST['package_options']);
         }
-        if ( isset($_POST['pack_count']) ) {   // update package options
+        if ( isset($_POST['pack_count']) ) {   // update pack count options
             update_post_meta($post_id, 'pack_count', $_POST['pack_count']);
+        }
+        if ( isset($_POST['selected_days']) ) {   // update selected days options
+            update_post_meta($post_id, 'selected_days', $_POST['selected_days']);
         }
     }
 }

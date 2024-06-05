@@ -15,15 +15,15 @@
         });
         // console.log(balaced_input);
     })
-   $('.add_more_package .more_package').on('click',function(){
-        // $('.gmf_package').eq(0).clone().appendTo('.gmf_package_container');
+    
+    $(document).on('click','.add_more_package .more_package',function(){
         let all_terms = terms_data[0];
         let term_options = ''
         all_terms.forEach(function(item,index){
             term_options += `<option value="${item.slug}"> ${item.name} </option>`
         })
         let pack_row_count = $('#pack_count').val()
-        console.log(pack_row_count);
+        let img_src = $('.package_close_img img').attr('src');
         let new_package = `
             <div class="gmf_package">
                 <div class="package_select">
@@ -35,7 +35,7 @@
                     <input type="number" name="package_options[${pack_row_count}][price]" id="" class="balance_discount">
                 </div>
                 <div class="package_close_img">
-                    <img src="https://placehold.co/30x30" alt="">
+                    <img src="${img_src}" alt="">
                 </div>
             </div>
         `
@@ -49,6 +49,25 @@
         }
         $(this).closest('.gmf_package').remove();
    })
-   
+   if($('#bkng_days').length > 0){
+        let select_box = $('#bkng_days').select2({
+            placeholder: "Select days",
+            allowClear: true
+        })
+   }
+   if( $('#selected_days').length > 0) {
+        let selected_days = $('#selected_days').val()
+        $('#bkng_days').val(selected_days.split(',')).trigger('change')
+    }
+    $('#bkng_days').on('change.select2',function(e){
+        let data = $(this).select2('data')
+        data = data.map(( option ) => {
+            return option.id
+        })
+        $('#selected_days').val(data.join(','))
+    });
+    $('.add_customer_pack').on('click',function(){
+        console.log('cus');
+    })
 
 })(jQuery)

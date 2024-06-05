@@ -19,7 +19,9 @@ class Gmf{
     }
     public function admin_enqueue_callback(){
         wp_enqueue_style( 'gmf-css', GMF_URL . 'assets/css/style.css' );
+        wp_enqueue_style( 'gmf-select2-css', GMF_URL . 'assets/css/select2.css' );
         wp_enqueue_script('jquery');
+        wp_enqueue_script( 'gmf-select2-js', GMF_URL . 'assets/js/select2.js', array('jquery'),time(),true);
         wp_enqueue_script( 'gmf-js', GMF_URL . 'assets/js/main.js', array('jquery'), time(), true);
         wp_localize_script( 'gmf-js', 'localize_data', array(
             'url' => admin_url('admin-ajax.php'),

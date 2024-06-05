@@ -27,13 +27,29 @@
     width: 20%;
     font-size: 16px;
 }
+.select2-container--default .select2-selection--multiple.select2-selection--clearable {
+    padding-right: 0px;
+    width: 100%;
+}
+/* .bkng_days{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+} */
+/* .bkng_days span{
+    margin-right: 50px;
+} */
 .bkng_room select,
-.bkng_days select,
+/* .bkng_days select, */
 .bkng_cancellation select,
 .bkng_start_time input,
 .bkng_end_time input{
     width: 60%;
     padding: 4px;
+}
+select#bkng_days{
+    width: 50%;
+    height: 50px;
 }
 /* add package price */
 .meta_package_price_title{
